@@ -56,3 +56,4 @@ public class MusicController {
         mav.setViewName("musics");
         return mav;
     }
+}

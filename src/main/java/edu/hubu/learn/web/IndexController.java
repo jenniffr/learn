@@ -18,9 +18,6 @@ public class IndexController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private MusicService musicService;
-
     @RequestMapping("/")
     public ModelAndView index() {
         ModelAndView mav = new ModelAndView();
@@ -34,26 +31,6 @@ public class IndexController {
         User user = userService.getUser(1l);
         mav.addObject("user", user);
         mav.setViewName("user");
-        return mav;
-    }
-
-
-    
-    @RequestMapping("/music")
-    public ModelAndView music() {
-        ModelAndView mav = new ModelAndView();
-        Music music = musicService.getMusic(1l);
-        mav.addObject("music", music);
-        mav.setViewName("music");
-        return mav;
-    }
-
-    @RequestMapping("/music/{id}")
-    public ModelAndView getmusic(@PathVariable Long id) {
-        ModelAndView mav = new ModelAndView();
-        Music music = musicService.getMusic(id);
-        mav.addObject("music", music);
-        mav.setViewName("music");
         return mav;
     }
 }
