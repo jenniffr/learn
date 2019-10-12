@@ -21,4 +21,16 @@ public class MusicService {
     public List<Music> getMusics() {
         return musicDao.findAll();
     }
+
+    public Music addMusic(Music music) {
+        return musicDao.save(music);
+    }
+
+    public void deleteMusic(Long id) {
+        musicDao.deleteById(id);
+    }
+
+    public void modifyMusic(Music music) {
+        musicDao.save(music);
+    }
 }
