@@ -17,13 +17,34 @@
     <![endif]-->
   </head>
 <body>
-<table class="table table-hover">
-<#list musics as music>
-<tr>
-<td>${music.musicname}  </td><td>${music.singer} </td>
-</tr>
-</#list>
-</table>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <ul role="nav nav-pills nav-stacked">
+        <li role="presentation"><a href="/music/list">列表</a></li>
+        <li role="presentation" class="active"><a href="/music/add">新增</a></li>
+        <li role="presentation"><a href="/music/search">搜索</a></li>
+      </ul>
+    </div>
+    <div class="col-md-8"> 
+     <table class="table table-hover">
+     <thead>
+      <th>ID</th><th>歌曲</th><th>歌手</th><th>删除</th><th>修改</th>
+     </thead>
+     <tbody>
+      <#list musics as music>
+       <tr calss="active">
+       <td>${music.id} </td><td>${music.musicname}  </td><td>${music.singer} </td>
+       <td><a href="/music/delete/${music.id}">删除</a></td>
+       <td><a href="/music/modify/${music.id}">修改</a></td>
+       </tr>
+      </#list>
+     </tbody>
+     </table>
+    </div>
+  </div>
+</div>
+<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
 <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
     <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->

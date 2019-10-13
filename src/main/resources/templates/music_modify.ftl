@@ -27,14 +27,15 @@
       </ul>
     </div>
     <div class="col-md-8">
-     <form action="/music/do_add">
+     <form action="/music/do_modify">
+      <input type="hidden" id="id" name="id" value="${music.id}">
       <div class="foem-group">
         <label for="musicname">歌曲</label>
-        <input type="musicname" class="form-control" id="musicname" name="musicname" placeholder="请输入歌曲名称">
+        <input type="text" class="form-control" id="musicname" name="musicname" value="${music.musicname}" placeholder="请输入歌曲名称">
       </div>
       <div class="foem-group">
         <label for="singer">歌手</label>
-        <input type="singer" class="form-control" id="singer" name="singer" placeholder="请输入歌手姓名">
+        <input type="text" class="form-control" id="singer" name="singer" value="${music.singer}" placeholder="请输入歌手姓名">
       </div>
       <button type="submit" class="btn btn-default">确认</button>
      </form>

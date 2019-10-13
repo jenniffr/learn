@@ -53,4 +53,21 @@ public class MusicController {
         ModelAndView mav = new ModelAndView("redirect:/music/list");
         return mav;
     }
+
+    @RequestMapping("/modify/{id}")
+    public ModelAndView modifyMusic(@PathVariable Long id) {
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("music",musicService.getMusic(id));
+        mav.setViewName("music_modify");
+        return mav;
+    }
+
+    @RequestMapping("/do_modify")
+    public ModelAndView doModifyUser(Music music) {
+        musicService.modifyMusic(music);
+        ModelAndView mav = new ModelAndView("redirect:/music/list");
+        return mav;
+    }   
+
+
 }
