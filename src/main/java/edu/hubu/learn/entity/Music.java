@@ -17,5 +17,8 @@ public class Music {
     private String singer;
 
 	public void setAvatar(String string) {
-	}
+    }
+    
+    @Column(name="avatar_url")
+    private String avatar;
 }

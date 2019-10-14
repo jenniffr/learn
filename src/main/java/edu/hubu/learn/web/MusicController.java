@@ -69,5 +69,10 @@ public class MusicController {
         return mav;
     }   
 
-
+    @RequestMapping("/delete/{id}")
+    public ModelAndView delete(@PathVariable Long id) {
+        musicService.deleteMusic(id);
+        ModelAndView mav = new ModelAndView("redirect:/music/list");
+        return mav;
+    }
 }
