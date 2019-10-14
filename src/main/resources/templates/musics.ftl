@@ -20,7 +20,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-4">
-      <ul role="nav nav-pills nav-stacked">
+      <ul class="nav nav-pills nav-stacked">
         <li role="presentation"><a href="/music/list">列表</a></li>
         <li role="presentation" class="active"><a href="/music/add">新增</a></li>
         <li role="presentation"><a href="/music/search">搜索</a></li>

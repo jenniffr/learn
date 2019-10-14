@@ -2,6 +2,8 @@ package edu.hubu.learn.web;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -63,7 +65,7 @@ public class MusicController {
     }
 
     @RequestMapping("/do_modify")
-    public ModelAndView doModifyUser(Music music) {
+    public ModelAndView doModifyMusic(Music music) {
         musicService.modifyMusic(music);
         ModelAndView mav = new ModelAndView("redirect:/music/list");
         return mav;
@@ -75,4 +77,22 @@ public class MusicController {
         ModelAndView mav = new ModelAndView("redirect:/music/list");
         return mav;
     }
+
+    @RequestMapping("/search")
+    public ModelAndView searchMusic() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("music_search");
+        return mav;
+    }
+
+    @RequestMapping("/do_search")
+    public ModelAndView dosearchMusic(HttpServletRequest httpRequest) {
+        ModelAndView mav = new ModelAndView();
+        String keyword = httpRequest.getParameter("keyword");
+        List<Music>musics = musicService.searchMusics(keyword);
+        mav.addObject("musics", musics);
+        mav.setViewName("musics");
+        return mav;
+    }   
+
 }

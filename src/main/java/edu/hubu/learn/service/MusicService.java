@@ -33,4 +33,8 @@ public class MusicService {
     public void modifyMusic(Music music) {
         musicDao.save(music);
     }
+
+	public List<Music> searchMusics(String keyword) {
+		return ;
+	}
 }
