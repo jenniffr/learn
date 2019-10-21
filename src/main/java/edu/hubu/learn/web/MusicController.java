@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -86,10 +85,10 @@ public class MusicController {
     }
 
     @RequestMapping("/do_search")
-    public ModelAndView dosearchMusic(HttpServletRequest httpRequest) {
+    public ModelAndView doSearchMusic(HttpServletRequest httpRequest) {
         ModelAndView mav = new ModelAndView();
         String keyword = httpRequest.getParameter("keyword");
-        List<Music>musics = musicService.searchMusics(keyword);
+        List<Music> musics = musicService.searchMusics(keyword);
         mav.addObject("musics", musics);
         mav.setViewName("musics");
         return mav;

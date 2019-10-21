@@ -3,6 +3,10 @@ package edu.hubu.learn.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import edu.hubu.learn.dao.MusicDao;
@@ -19,7 +23,16 @@ public class MusicService {
     }
 
     public List<Music> getMusics() {
-        return musicDao.findAll();
+        return musicDao.findAll(new Sort(Direction.DESC, "id"));
+    }
+
+    public List<Music> searchMusics(String keyword) {
+        Music music = new Music();
+        music.setMusicname(keyword);
+        ExampleMatcher matcher = ExampleMatcher.matching().withMatcher("musicname", match->match.contains());
+        Example<Music> example = Example.of(music, matcher);
+        Sort sort = new Sort(Direction.DESC, "id");
+        return musicDao.findAll(example, sort);
     }
 
     public Music addMusic(Music music) {
@@ -33,8 +46,4 @@ public class MusicService {
     public void modifyMusic(Music music) {
         musicDao.save(music);
     }
-
-	public List<Music> searchMusics(String keyword) {
-		return ;
-	}
 }
