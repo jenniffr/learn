@@ -6,8 +6,8 @@ INSERT INTO `user` (id, username, password, role) VALUES ('5', 'user3', '1234', 
 INSERT INTO `user` (id, username, password, role) VALUES ('6', 'user4', '1234', 'user');
 
 
-INSERT INTO `music` (id, musicname, singer) VALUES ('1', 'My Prayer','Devotion');
-INSERT INTO `music` (id, musicname, singer) VALUES ('2', '故事外的人','慕寒');
-INSERT INTO `music` (id, musicname, singer) VALUES ('3', '白衣','河图');
+INSERT INTO `music` (id, musicname, singer,audio) VALUES ('1', 'My Prayer','Devotion');
+INSERT INTO `music` (id, musicname, singer,audio) VALUES ('2', '故事外的人','慕寒');
+INSERT INTO `music` (id, musicname, singer,audio) VALUES ('3', '白衣','河图');
 
 COMMIT;
