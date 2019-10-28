@@ -1,0 +1,96 @@
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8">
+    <title>user manage</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        {{ message}}
+        <table>
+            <tr v-for="music in musics">
+                <td>{{ music.id }}</td>
+                <td>{{ music.musicname }}</td>
+                <td>{{ music.singer }}</td>
+                <td>{{ music.avatar }}</td>
+                <td v-on:click="del(music.id)">删除</td>
+                <td v-on:click="edit(music)">修改</td>>
+            </tr>
+        </table>
+        <div>
+            <label for="name">歌名</label>
+            <input id="name" v-model="current_music.musicname">
+            <label for="singer">歌手</label>
+            <input id="singer" v-model="current_music.singer">
+            <label for="avatar">音频</label>
+            <input id="avatar" v-model="current_music.avatar">
+            <input v-on:click="apply()" type="button" value="提交">
+        </div>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'hello, world',
+                musics: [],
+                current_music: {}
+            },
+            created: function () {
+                this.list();
+            },
+            methods: {
+                list: function () {
+                    var vm = this
+                    vm.$http.get('/rest/music/list').then(
+                        function (data) {
+                            vm.musics = data.body
+                        }).catch(function (response) {
+                        console.log(response)
+                    })
+                },
+                del: function (id) {
+                    var vm = this
+                    vm.$http.delete('/rest/music/' + id).then(function (data) {
+                            success = data.body.success
+                            if (success) {
+                                for (i = 0; i < vm.musics.length; i++) {
+                                    if (vm.musics[i].id === id) {
+                                        vm.musics.splice(i, 1)
+                                        break
+                                    }
+                                }
+                            }
+                        },function (response) {
+                            alert(response.body.error)
+                    })
+                },
+                edit: function (music) {
+                    var vm = this
+                    vm.current_music = music
+                },
+                apply: function () {
+                    var vm = this
+                    if (vm.current_music.id) {
+                        vm.$http.put('/rest/music',vm.current_music).then(function (data) {
+                            alert("修改成功")
+                    }, function (response) {
+                        alert(response.body.error)
+                    })
+                } else {
+                    vm.$http.post('/rest/music', vm.current_music).then(function (data) {
+                            vm.musics.push(data.body)
+                            alert("添加成功")
+                        }, function (response) {
+                            alert(response.body.error)
+                        })      
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html> 

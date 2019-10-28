@@ -22,7 +22,6 @@ CREATE TABLE `music` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `musicname` varchar(50) DEFAULT NULL,
   `singer` varchar(50) DEFAULT NULL,
-  `audio` varchar(50) DEFAULT NULL comment '角色',
   `avatar_url` varchar(200) DEFAULT '' comment '音频',
   PRIMARY KEY (`id`)
 )
