@@ -24,10 +24,8 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/music")
 public class MusicController {
 
-
     @Autowired
     private MusicService musicService;
-
 
     @RequestMapping("/{id}")
     public ModelAndView music(@PathVariable Long id) {

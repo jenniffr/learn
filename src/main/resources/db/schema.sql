@@ -24,4 +24,4 @@ CREATE TABLE `music` (
   `singer` varchar(50) DEFAULT NULL,
   `avatar_url` varchar(200) DEFAULT '' comment '音频',
   PRIMARY KEY (`id`)
-)
+);
